@@ -3,309 +3,259 @@ title: Predicting Boston Housing Prices
 author: Joshua Cook
 ---
 
-The following document was written interactively while executing an accompanying Python script. 
+The following document was written interactively while executing an accompanying Python [script](https://github.com/joshuacook/boston_housing_data_model_development/blob/master/src/boston_housing.py). 
+
+In order to run the script interactively, the main function was commented out.
 
 ```python
-%matplotlib inline
-%run "../projects/project_1_boston_housing/src/boston_housing_students.py"
+In [1]: %matplotlib inline
+```
+
+```python
+In [2]: %run "../src/boston_housing.py"
+```
+
+## Load data
+
+```python
+In [3]: city_data = load_data()
+```
+
+## Statistical Analysis and Data Exploration
+
+```python
+In [4]: explore_city_data(city_data)
+The number of data points in this set is 506.
+The number of features in this set is 13.
+The minimum value of the target feature, housing price, is 5.
+The maximum value of the target feature, housing price, is 50.
+The mean value of the target feature, housing price, is 22.5328.
+The median value of the target feature, housing price, is 21.2000.
+The standard deviation of the target feature, housing price, is 9.1880.
+```
+
+## Training/Test dataset split
+```python
+In [5]: X_train, y_train, X_test, y_test = split_data(city_data)
+```
+
+## Learning Curve Graphs
+```python
+In [6]: max_depths = [1,2,3,4,5,6,7,8,9,10]
+
+In [7]: for max_depth in max_depths:
+          learning_curve(max_depth, X_train, y_train, X_test, y_test)
 ```
 
 
-```python
-# Load data
-city_data = load_data()
-```
 
-## Questions and Report Structure
+\begin{figure}
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{1_boston_housing_students_files/1_boston_housing_students_6_1.png}
+    \caption{Decision Tree with Max Depth: 1 }
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{1_boston_housing_students_files/1_boston_housing_students_6_3.png}
+  \caption{Decision Tree with Max Depth: 2 }
+  \end{minipage}
+\end{figure}
+
+
+\begin{figure}
+\begin{minipage}[b]{0.49\textwidth}
+\centering
+\includegraphics[height=2in]{1_boston_housing_students_files/1_boston_housing_students_6_5.png}
+\caption{Decision Tree with Max Depth: 3 }
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.49\textwidth}
+\centering
+\includegraphics[height=2in]{1_boston_housing_students_files/1_boston_housing_students_6_7.png}
+\caption{Decision Tree with Max Depth: 4 }
+\end{minipage}
+\end{figure}
+
+\begin{figure}
+\begin{minipage}[b]{0.49\textwidth}
+\centering
+\includegraphics[height=2in]{1_boston_housing_students_files/1_boston_housing_students_6_9.png}
+\caption{Decision Tree with Max Depth: 5 }
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.49\textwidth}
+\centering
+\includegraphics[height=2in]{1_boston_housing_students_files/1_boston_housing_students_6_11.png}
+\caption{Decision Tree with Max Depth: 6 }
+\end{minipage}
+\end{figure}
+
+\begin{figure}
+\begin{minipage}[b]{0.49\textwidth}
+\centering
+\includegraphics[height=2in]{1_boston_housing_students_files/1_boston_housing_students_6_13.png}
+\caption{Decision Tree with Max Depth: 7 }
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.49\textwidth}
+\centering
+\includegraphics[height=2in]{1_boston_housing_students_files/1_boston_housing_students_6_15.png}
+\caption{Decision Tree with Max Depth: 8 }
+\end{minipage}
+\end{figure}
+
+\begin{figure}
+\begin{minipage}[b]{0.49\textwidth}
+\centering
+\includegraphics[height=2in]{1_boston_housing_students_files/1_boston_housing_students_6_17.png}
+\caption{Decision Tree with Max Depth: 9 }
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.49\textwidth}
+\centering
+\includegraphics[height=2in]{1_boston_housing_students_files/1_boston_housing_students_6_19.png}
+\caption{Decision Tree with Max Depth: 10 }
+\end{minipage}
+\end{figure}
+
+
+\pagebreak
+
+\ \
+
+\pagebreak
 
-### 1) Statistical Analysis and Data Exploration
-
-- Number of data points (houses)?
-- Number of features?
-- Minimum and maximum housing prices?
-- Mean and median Boston housing prices?
-- Standard deviation?
-
-
-
-
-```python
-# Explore the data
-explore_city_data(city_data)
-```
-
-    The number of data points in this set is 506.
-    The number of features in this set is 13.
-    The minimum value of the target feature, housing price, is 5.
-    The maximum value of the target feature, housing price, is 50.
-    The mean value of the target feature, housing price, is 22.5328.
-    The median value of the target feature, housing price, is 21.2000.
-    The standard deviation of the target feature, housing price, is 9.1880.
-
-
-
-```python
-# Training/Test dataset split
-X_train, y_train, X_test, y_test = split_data(city_data)
-```
-
-
-```python
-# Learning Curve Graphs
-max_depths = [1,2,3,4,5,6,7,8,9,10]
-for max_depth in max_depths:
-    learning_curve(max_depth, X_train, y_train, X_test, y_test)
-```
-
-    Decision Tree with Max Depth: 
-    1
-
-
-
-![png](1_boston_housing_students_files/1_boston_housing_students_6_1.png)
-
-
-    Decision Tree with Max Depth: 
-    2
-
-
-
-![png](1_boston_housing_students_files/1_boston_housing_students_6_3.png)
-
-
-    Decision Tree with Max Depth: 
-    3
-
-
-
-![png](1_boston_housing_students_files/1_boston_housing_students_6_5.png)
-
-
-    Decision Tree with Max Depth: 
-    4
-
-
-
-![png](1_boston_housing_students_files/1_boston_housing_students_6_7.png)
-
-
-    Decision Tree with Max Depth: 
-    5
-
-
-
-![png](1_boston_housing_students_files/1_boston_housing_students_6_9.png)
-
-
-    Decision Tree with Max Depth: 
-    6
-
-
-
-![png](1_boston_housing_students_files/1_boston_housing_students_6_11.png)
-
-
-    Decision Tree with Max Depth: 
-    7
-
-
-
-![png](1_boston_housing_students_files/1_boston_housing_students_6_13.png)
-
-
-    Decision Tree with Max Depth: 
-    8
-
-
-
-![png](1_boston_housing_students_files/1_boston_housing_students_6_15.png)
-
-
-    Decision Tree with Max Depth: 
-    9
-
-
-
-![png](1_boston_housing_students_files/1_boston_housing_students_6_17.png)
-
-
-    Decision Tree with Max Depth: 
-    10
-
-
-
-![png](1_boston_housing_students_files/1_boston_housing_students_6_19.png)
-
-
-
-```python
 # Model Complexity Graph
-model_complexity(X_train, y_train, X_test, y_test)
-```
-
-    Model Complexity: 
-
-
-
-![png](1_boston_housing_students_files/1_boston_housing_students_7_1.png)
-
-
-
 ```python
-# Tune and predict Model
-fit_predict_model(city_data)
+In [8]: model_complexity(X_train, y_train, X_test, y_test)
 ```
 
-    Final Model: 
-    GridSearchCV(cv=None, error_score='raise',
-           estimator=DecisionTreeRegressor(criterion='mse', max_depth=None, max_features=None,
-               max_leaf_nodes=None, min_samples_leaf=1, min_samples_split=2,
-               min_weight_fraction_leaf=0.0, presort=False, random_state=None,
-               splitter='best'),
-           fit_params={}, iid=True, n_jobs=1,
-           param_grid={'max_depth': (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)},
-           pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
-    House: [11.95, 0.0, 18.1, 0, 0.659, 5.609, 90.0, 1.385, 24, 680.0, 20.2, 332.09, 12.13]
-    Prediction: [ 20.76598639]
+![Model Complexity](1_boston_housing_students_files/1_boston_housing_students_7_1.png)
 
-
-    /usr/local/lib/python2.7/site-packages/sklearn/utils/validation.py:386: DeprecationWarning: Passing 1d arrays as data is deprecated in 0.17 and willraise ValueError in 0.19. Reshape your data either using X.reshape(-1, 1) if your data has a single feature or X.reshape(1, -1) if it contains a single sample.
-      DeprecationWarning)
-
-
-
+# Tune and predict Model
 ```python
-# Tune and predict Model
-fit_predict_model(city_data)
+In [9]: fit_predict_model(city_data)
+
+Final Model: 
+GridSearchCV(cv=None, error_score='raise',
+       estimator=DecisionTreeRegressor(criterion='mse', max_depth=None, 
+           max_features=None, max_leaf_nodes=None, min_samples_leaf=1, 
+           min_samples_split=2, min_weight_fraction_leaf=0.0, presort=False, 
+           random_state=None, splitter='best'),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'max_depth': (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+House: [11.95, 0.0, 18.1, 0, 0.659, 5.609, 90.0, 1.385, 
+        24, 680.0, 20.2, 332.09, 12.13]
+Prediction: [ 20.76598639]
+
+In[10]: fit_predict_model(city_data)
+
+Final Model: 
+GridSearchCV(cv=None, error_score='raise',
+       estimator=DecisionTreeRegressor(criterion='mse', max_depth=None, 
+           max_features=None, max_leaf_nodes=None, min_samples_leaf=1, 
+           min_samples_split=2, min_weight_fraction_leaf=0.0, presort=False, 
+           random_state=None, splitter='best'),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'max_depth': (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+House: [11.95, 0.0, 18.1, 0, 0.659, 5.609, 90.0, 1.385, 
+        24, 680.0, 20.2, 332.09, 12.13]
+Prediction: [ 19.99746835]
+
+In[11]: fit_predict_model(city_data)
+
+Final Model: 
+GridSearchCV(cv=None, error_score='raise',
+       estimator=DecisionTreeRegressor(criterion='mse', max_depth=None, 
+           max_features=None, max_leaf_nodes=None, min_samples_leaf=1, 
+           min_samples_split=2, min_weight_fraction_leaf=0.0, presort=False, 
+           random_state=None, splitter='best'),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'max_depth': (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+House: [11.95, 0.0, 18.1, 0, 0.659, 5.609, 90.0, 1.385, 
+        24, 680.0, 20.2, 332.09, 12.13]
+Prediction: [ 21.62974359]
+
+In[12]: fit_predict_model(city_data)
+
+Final Model: 
+GridSearchCV(cv=None, error_score='raise',
+       estimator=DecisionTreeRegressor(criterion='mse', max_depth=None, 
+           max_features=None, max_leaf_nodes=None, min_samples_leaf=1, 
+           min_samples_split=2, min_weight_fraction_leaf=0.0, presort=False, 
+           random_state=None, splitter='best'),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'max_depth': (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+House: [11.95, 0.0, 18.1, 0, 0.659, 5.609, 90.0, 1.385, 
+        24, 680.0, 20.2, 332.09, 12.13]
+Prediction: [ 21.62974359]
+
+In[13]: fit_predict_model(city_data)
+
+Final Model:  
+GridSearchCV(cv=None, error_score='raise',
+       estimator=DecisionTreeRegressor(criterion='mse', max_depth=None, 
+           max_features=None, max_leaf_nodes=None, min_samples_leaf=1, 
+           min_samples_split=2, min_weight_fraction_leaf=0.0, presort=False, 
+           random_state=None, splitter='best'),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'max_depth': (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+House: [11.95, 0.0, 18.1, 0, 0.659, 5.609, 90.0, 1.385, 
+        24, 680.0, 20.2, 332.09, 12.13]
+Prediction: [ 21.62974359]
 ```
 
-    Final Model: 
-    GridSearchCV(cv=None, error_score='raise',
-           estimator=DecisionTreeRegressor(criterion='mse', max_depth=None, max_features=None,
-               max_leaf_nodes=None, min_samples_leaf=1, min_samples_split=2,
-               min_weight_fraction_leaf=0.0, presort=False, random_state=None,
-               splitter='best'),
-           fit_params={}, iid=True, n_jobs=1,
-           param_grid={'max_depth': (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)},
-           pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
-    House: [11.95, 0.0, 18.1, 0, 0.659, 5.609, 90.0, 1.385, 24, 680.0, 20.2, 332.09, 12.13]
-    Prediction: [ 19.99746835]
-
-
-    /usr/local/lib/python2.7/site-packages/sklearn/utils/validation.py:386: DeprecationWarning: Passing 1d arrays as data is deprecated in 0.17 and willraise ValueError in 0.19. Reshape your data either using X.reshape(-1, 1) if your data has a single feature or X.reshape(1, -1) if it contains a single sample.
-      DeprecationWarning)
-
-
-
-```python
-# Tune and predict Model
-fit_predict_model(city_data)
-```
-
-    Final Model: 
-    GridSearchCV(cv=None, error_score='raise',
-           estimator=DecisionTreeRegressor(criterion='mse', max_depth=None, max_features=None,
-               max_leaf_nodes=None, min_samples_leaf=1, min_samples_split=2,
-               min_weight_fraction_leaf=0.0, presort=False, random_state=None,
-               splitter='best'),
-           fit_params={}, iid=True, n_jobs=1,
-           param_grid={'max_depth': (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)},
-           pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
-    House: [11.95, 0.0, 18.1, 0, 0.659, 5.609, 90.0, 1.385, 24, 680.0, 20.2, 332.09, 12.13]
-    Prediction: [ 21.62974359]
-
-
-    /usr/local/lib/python2.7/site-packages/sklearn/utils/validation.py:386: DeprecationWarning: Passing 1d arrays as data is deprecated in 0.17 and willraise ValueError in 0.19. Reshape your data either using X.reshape(-1, 1) if your data has a single feature or X.reshape(1, -1) if it contains a single sample.
-      DeprecationWarning)
-
-
-
-```python
-# Tune and predict Model
-fit_predict_model(city_data)
-```
-
-    Final Model: 
-    GridSearchCV(cv=None, error_score='raise',
-           estimator=DecisionTreeRegressor(criterion='mse', max_depth=None, max_features=None,
-               max_leaf_nodes=None, min_samples_leaf=1, min_samples_split=2,
-               min_weight_fraction_leaf=0.0, presort=False, random_state=None,
-               splitter='best'),
-           fit_params={}, iid=True, n_jobs=1,
-           param_grid={'max_depth': (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)},
-           pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
-    House: [11.95, 0.0, 18.1, 0, 0.659, 5.609, 90.0, 1.385, 24, 680.0, 20.2, 332.09, 12.13]
-    Prediction: [ 21.62974359]
-
-
-    /usr/local/lib/python2.7/site-packages/sklearn/utils/validation.py:386: DeprecationWarning: Passing 1d arrays as data is deprecated in 0.17 and willraise ValueError in 0.19. Reshape your data either using X.reshape(-1, 1) if your data has a single feature or X.reshape(1, -1) if it contains a single sample.
-      DeprecationWarning)
-
-
-
-```python
-# Tune and predict Model
-fit_predict_model(city_data)
-```
-
-    Final Model: 
-    GridSearchCV(cv=None, error_score='raise',
-           estimator=DecisionTreeRegressor(criterion='mse', max_depth=None, max_features=None,
-               max_leaf_nodes=None, min_samples_leaf=1, min_samples_split=2,
-               min_weight_fraction_leaf=0.0, presort=False, random_state=None,
-               splitter='best'),
-           fit_params={}, iid=True, n_jobs=1,
-           param_grid={'max_depth': (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)},
-           pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
-    House: [11.95, 0.0, 18.1, 0, 0.659, 5.609, 90.0, 1.385, 24, 680.0, 20.2, 332.09, 12.13]
-    Prediction: [ 21.62974359]
-
-
-    /usr/local/lib/python2.7/site-packages/sklearn/utils/validation.py:386: DeprecationWarning: Passing 1d arrays as data is deprecated in 0.17 and willraise ValueError in 0.19. Reshape your data either using X.reshape(-1, 1) if your data has a single feature or X.reshape(1, -1) if it contains a single sample.
-      DeprecationWarning)
-
-
-### 2) Evaluating Model Performance
+# Evaluating Model Performance
 
 - *Which measure of model performance is best to use for predicting Boston housing data and analyzing the errors?* 
 
   Scikit-learn has several built-in tools for quantifying the quality of prediction models. In this project, our target feature is a continuous variable, make the prediction of the variable a regression rather than classification problem. The following metrics are listed in the reference section:
     
-    - [`metrics.explained_variance_score(y_true, y_pred)`](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.explained_variance_score.html#sklearn.metrics.explained_variance_score)	Explained variance regression score function
-    - [`metrics.mean_absolute_error(y_true, y_pred)`](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_absolute_error.html#sklearn.metrics.mean_absolute_error)	Mean absolute error regression loss
-    - [`metrics.mean_squared_error(y_true, y_pred[, ...])`](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html#sklearn.metrics.mean_squared_error)	Mean squared error regression loss
-    - [`metrics.median_absolute_error(y_true, y_pred)`](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.median_absolute_error.html#sklearn.metrics.median_absolute_error)	Median absolute error regression loss
-    - [`metrics.r2_score(y_true, y_pred[, ...])`](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html#sklearn.metrics.r2_score)	R^2 (coefficient of determination) regression score function.  
+  [`metrics.explained_variance_score(y_true, y_pred)`](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.explained_variance_score.html#sklearn.metrics.explained_variance_score)	 
+  Explained variance regression score function  
+  [`metrics.mean_absolute_error(y_true, y_pred)`](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_absolute_error.html#sklearn.metrics.mean_absolute_error)	
+  Mean absolute error regression loss  
+  [`metrics.mean_squared_error(y_true, y_pred[, ...])`](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html#sklearn.metrics.mean_squared_error)	
+  Mean squared error regression loss  
+  [`metrics.median_absolute_error(y_true, y_pred)`](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.median_absolute_error.html#sklearn.metrics.median_absolute_error)	
+  Median absolute error regression loss  
+  [`metrics.r2_score(y_true, y_pred[, ...])`](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html#sklearn.metrics.r2_score)	
+  R^2 (coefficient of determination) regression score function.   
    
   With little exposure to any of these, I chose to familiarize myself with the two metrics treated in the support material, mean absolute error and mean squared error, doing a little research into the topic. I found the following:
   
-  > Both the root mean square error (RMSE) and the mean absolute error (MAE) are regularly employed in model evaluation studies. [^Chai]
+  > Both the root mean square error (RMSE) and the mean absolute error (MAE) are regularly employed in model evaluation studies.[^Chai]
   
 [^Chai]: Chai, Tianfeng, and Roland R. Draxler. "Root mean square error (RMSE) or mean absolute error (MAE)?–Arguments against avoiding RMSE in the literature." Geoscientific Model Development 7.3 (2014): 1247-1250.
 
-  > The mean absolute error ... is less sensitive to the occasional very large error because it does not square the errors in the calculation. [^rnau]
+  > The mean absolute error ... is less sensitive to the occasional very large error because it does not square the errors in the calculation.[^rnau]
   
   > The root mean squared error is more sensitive than other measures to the occasional large error: the squaring process gives disproportionate weight to very large errors. If an occasional large error is not a problem in your decision situation (e.g., if the true cost of an error is roughly proportional to the size of the error, not the square of the error), then the MAE or MAPE may be a more relevant criterion.
     
-  > There is no absolute criterion for a "good" value of RMSE or MAE: it depends on the units in which the variable is measured and on the degree of forecasting accuracy, as measured in those units, which is sought in a particular application. Depending on the choice of units, the RMSE or MAE of your best model could be measured in zillions or one-zillionths. It makes no sense to say "the model is good (bad) because the root mean squared error is less (greater) than x", unless you are referring to a specific degree of accuracy that is relevant to your forecasting application. 
+  > There is no absolute criterion for a "good" value of RMSE or MAE: it depends on the units in which the variable is measured and on the degree of forecasting accuracy, as measured in those units, which is sought in a particular application. Depending on the choice of units, the RMSE or MAE of your best model could be measured in zillions or one-zillionths. It makes no sense to say "the model is good (bad) because the root mean squared error is less (greater) than x", unless you are referring to a specific degree of accuracy that is relevant to your forecasting application.[^Hyndmand_Koehler]
   
 [^rnau]: http://people.duke.edu/~rnau/compare.htm
 
-[^Hyndmand_Koehler]
+
 [^Hyndmand_Koehler]: Hyndman, Rob J., and Anne B. Koehler. "Another look at measures of forecast accuracy." International journal of forecasting 22.4 (2006): 679-688.
   
 - Why do you think this measurement most appropriate? 
-
-  *According to [^rnau]* 
   
-   > If an occasional large error is not a problem in your decision situation (e.g., if the true cost of an error is roughly proportional to the size of the error, not the square of the error), then the MAE or MAPE may be a more relevant criterion.
+   > If an occasional large error is not a problem in your decision situation (e.g., if the true cost of an error is roughly proportional to the size of the error, not the square of the error), then the MAE or MAPE may be a more relevant criterion.[^rnau]
    
    This seems to fit with the data we are looking at so I chose to go with the Mean Absolute Error as my performance metric. 
    
 
 - *Why might the other measurements not be appropriate here?*  
 
-  Explained variance is primarily aimed at principal component analysis. Of course, we shouldn't use classfication or clustering metrics on this problem, a regression.
+  Explained variance is primarily aimed at principal component analysis. Furthermore, we shouldn't use classfication or clustering metrics on this problem, a regression.
 
 - *Why is it important to split the Boston housing data into training and testing data? What happens if you do not do this?*
 
