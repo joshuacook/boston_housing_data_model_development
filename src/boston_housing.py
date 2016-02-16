@@ -107,19 +107,21 @@ def learning_curve(depth, X_train, y_train, X_test, y_test):
 
 
     # Plot learning curve graph
-    learning_curve_graph(sizes, train_err, test_err)
+    learning_curve_graph(sizes, train_err, test_err, depth)
 
 
-def learning_curve_graph(sizes, train_err, test_err):
+def learning_curve_graph(sizes, train_err, test_err, depth):
     '''Plot training and test error as a function of the training size.'''
 
     pl.figure()
-    pl.title('Decision Trees: Performance vs Training Size')
+    pl.title("Decision Trees: Performance vs Training Size, depth: {0}".format(depth))
     pl.plot(sizes, test_err, lw=2, label = 'test error')
     pl.plot(sizes, train_err, lw=2, label = 'training error')
     pl.legend()
     pl.xlabel('Training Size')
     pl.ylabel('Error')
+    pl.ylim(0,10)
+    #pl.savefig("doc/1_boston_housing_students_files/trn_v_test_dep_{0}".format(depth))
     pl.show()
 
 
@@ -181,12 +183,13 @@ def fit_predict_model(city_data):
     # 1. Find the best performance metric
     # should be the same as your performance_metric procedure
     # http://scikit-learn.org/stable/modules/generated/sklearn.metrics.make_scorer.html
+    # wraps scoring functions to be used in GridSearchCV
     performance_metric_scorer = make_scorer(performance_metric)
 
 
     # 2. Use gridearch to fine tune the Decision Tree Regressor and find the best model
     # http://scikit-learn.org/stable/modules/generated/sklearn.grid_search.GridSearchCV.html#sklearn.grid_search.GridSearchCV
-    reg = GridSearchCV(regressor, parameters)
+    reg = GridSearchCV(regressor, parameters, scoring=performance_metric_scorer)
 
     # Fit the learner to the training data
     print "Final Model: "
@@ -225,4 +228,6 @@ def main():
     fit_predict_model(city_data)
 
 
-# main()
+if __name__=="__main__":
+    # main()
+    pass
