@@ -6,17 +6,44 @@ Later, this was reworked with a deeper emphasis on linear models.
 
 ## Boston Redux
 
-First, a [baseline](ipynb/boston_redux-00-baseline.ipynb) model was assessed against three naive models:
+### Baseline Model
+
+A [baseline](ipynb/boston_redux-00-baseline.ipynb) model was assessed against three models:
 
  - linear regression with no regularization (ordinary least squares)
  - linear regresison with $\ell_1$ regularization (LASSO)
  - linear regression with $\ell_2$ regularization (Ridge Regression)
+ 
+A simple grid search was performed over the regularized models to identify an optimal coefficient for the regularization.
  
 The results of this were
 
 
 | alpha   | model                 | test_score | train_score  |
 |:-------:|:---------------------:|:----------:|:------------:|
-| NaN     | linearregression      | 0.711009   | 0.743956     |
+| NaN     | linear regression     | 0.711009   | 0.743956     |
 | 0.00001 | lasso                 | 0.711009   | 0.743956     |
 | 0.01000 | ridge                 | 0.711016   | 0.743956     |
+
+### Standardized Model
+
+First, a [standardized](ipynb/boston_redux-01-standardized.ipynb) model was assessed against the same three models:
+
+ - linear regression with no regularization (ordinary least squares)
+ - linear regresison with $\ell_1$ regularization (LASSO)
+ - linear regression with $\ell_2$ regularization (Ridge Regression)
+ 
+A simple grid search was performed over the regularized models to identify an optimal coefficient for the regularization.
+ 
+The results of this were
+
+
+| alpha   | model                 | test_score | train_score  |
+|:-------:|:---------------------:|:----------:|:------------:|
+| NaN     | linear regression     | 0.711009   | 0.743956     |
+| 0.00001 | lasso                 | 0.711215   | 0.743956     |
+| 0.01000 | ridge                 | 0.711298   | 0.743956     |
+
+Note that standardization has no effect on the non-regularized linear regression.
+
+
