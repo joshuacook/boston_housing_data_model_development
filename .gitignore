@@ -1,2 +1,6 @@
+.cache/
+.ipython/
+.jupyter/
+.local
 **/.DS_Store
 **/.ipynb_checkpoints
